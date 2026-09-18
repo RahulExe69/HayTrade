@@ -668,6 +668,10 @@ $(document).ready(() =>
     {
         window.open("https://hd.jjtechdev.com/", "_blank");
     });
+    $("#donateButton").on("click", () =>
+    {
+        window.open("https://ko-fi.com/jjcuber", "_blank");
+    });
 
 
 
