@@ -7,7 +7,7 @@
         <meta name="google-site-verification" content="DTNkB2nNCvd3ms-A5Y9mVcCtJJj-9jl-TIvuNIWZVjY" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Hay Day Image Generator</title>
+        <title>HayTrade — Trade Card Maker</title>
 
         <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 
@@ -24,10 +24,10 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fuzzysort/2.0.4/fuzzysort.js" integrity="sha512-sdAWRZSPnL/EbXixTyBhffFggsxlPrxEMLKvseTBMfY3MGxYvXvm83S/WddNpx1tXPylK5warEPp7uu1yiNsgA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        <link rel="stylesheet" href="style.css?v=4.0">
+        <link rel="stylesheet" href="style.css?v=4.1">
 
 
-        <script src="script.js?v=4.0"></script>
+        <script src="script.js?v=4.1"></script>
     </head>
     <body>
 
@@ -38,34 +38,32 @@
       </a>
       <div class="header-actions">
         <button id="settingsOverlayShowButton" class="icon-button">⚙ <span>Settings</span></button>
-        <button id="changelogOverlayShowButton" class="quiet-button">What's new</button>
       </div>
     </header>
 
     <main class="app-shell">
       <section class="welcome-panel">
         <div class="welcome-copy">
-          <span class="eyebrow">YOUR FARM. YOUR MARKET.</span>
-          <h1>Make a listing<br><em>worth trading for.</em></h1>
-          <p>Build a clean, eye-catching item card for your Hay Day trading community.</p>
-          <div class="welcome-pills"><span>✦ Live preview</span><span>↗ Share-ready</span><span>☁ Stays on your device</span></div>
+          <span class="eyebrow">HAY DAY • TRADE CARDS</span>
+          <h1>Create your <em>trade card.</em></h1>
+          <p>Add items. Preview. Copy.</p>
         </div>
         <div class="welcome-art" aria-hidden="true"><div class="sun"></div><div class="hill hill-back"></div><div class="hill hill-front"></div><div class="barn">🏡</div><div class="crop crop-one">🌾</div><div class="crop crop-two">🌻</div></div>
       </section>
 
       <div class="workspace">
         <section class="editor-panel">
-          <div class="section-heading"><div><span class="step-label">STEP 01</span><h2>Build your listing</h2><p>Add items and set quantities.</p></div><span class="heading-icon">🧺</span></div>
+          <div class="section-heading"><div><h2>Add items</h2></div><span class="heading-icon">🧺</span></div>
 
           <div class="field-grid">
             <div class="field field-name"><label for="itemNameInput">Item name</label><div class="autocomplete-wrap"><input type="text" id="itemNameInput" autocomplete="off" placeholder="Search items…" /><div id="itemNameFuzzyMatchesHolder" class="fuzzyMatchesHolder"></div></div></div>
             <div class="field"><label for="itemQuantityInput">Quantity</label><input type="text" id="itemQuantityInput" placeholder="40" inputmode="text" /></div>
-            <div class="field"><label for="itemPriceOrMultiplierInput">Price / multiplier</label><input type="text" id="itemPriceOrMultiplierInput" placeholder="Optional" inputmode="text" /></div>
+            <div class="field"><label for="itemPriceOrMultiplierInput">Price / mult.</label><input type="text" id="itemPriceOrMultiplierInput" placeholder="Optional" inputmode="text" /></div>
           </div>
-          <div class="editor-actions"><button id="itemSubmitButton" class="primary-button">＋ Add / update item</button><button id="itemDeleteButton" class="danger-button disableInPriceCalculationMode">Delete</button></div>
+          <div class="editor-actions"><button id="itemSubmitButton" class="primary-button">＋ Add item</button><button id="itemDeleteButton" class="danger-button disableInPriceCalculationMode">Delete</button></div>
 
           <div class="quick-toolbar">
-            <div class="toolbar-title">Listing tools</div>
+            <div class="toolbar-title">Tools</div>
             <div class="toolbar-buttons">
               <button id="clearAllButton" class="quiet-button disableInPriceCalculationMode">Clear all</button>
               <button id="priceCalculationToggleButton" class="quiet-button"><span id="priceCalculationModeStateSpan">Enable</span> price calculator</button>
@@ -83,7 +81,8 @@
         </section>
 
         <section class="preview-panel">
-          <div class="section-heading preview-heading"><div><span class="step-label">STEP 02</span><h2>Your trade card</h2><p>Updates as you edit your listing.</p></div><span class="live-indicator"><i></i> LIVE PREVIEW</span></div>
+          <div class="section-heading preview-heading"><div><h2>Preview</h2></div><span class="live-indicator"><i></i> LIVE</span></div>
+          <div class="export-actions"><button id="copyImageToClipboardButton" class="primary-button">▣ Copy image</button><button id="copyAsTextListButton" class="secondary-button">☷ Copy list</button><div id="copyImageLoadingWheel" class="loading" hidden></div></div>
           <div class="preview-stage">
             <div id="screenshotRegion">
               <table id="itemTable"></table>
@@ -92,13 +91,10 @@
               <p class="watermark">HayTrade</p>
             </div>
           </div>
-          <div class="export-actions"><button id="copyImageToClipboardButton" class="primary-button">▣ Copy image</button><button id="copyAsTextListButton" class="secondary-button">☷ Copy text list</button><div id="copyImageLoadingWheel" class="loading" hidden></div></div>
-          <p class="preview-hint">Tip: tap an item in the preview to edit its details.</p>
         </section>
       </div>
-      <section class="bottom-help"><span class="help-icon">✦</span><div><strong>Ready to trade?</strong><p>Your listing card is generated in your browser. No account needed.</p></div><button id="contactOverlayShowButton" class="quiet-button">Help & contact ↗</button><button id="donateButton" class="quiet-button">♡ Support</button></section>
+      <section class="bottom-help"><button id="contactOverlayShowButton" class="quiet-button">Help</button><button id="donateButton" class="quiet-button">♡ Support</button><span class="independent-note">Fan-made • Not affiliated with Supercell</span></section>
       <p id="priceCalculationModeSelectionInfo" hidden>Click = individual toggle, Shift+Click = range additive, Alt+Click = range subtractive, Ctrl+Click = range toggle (invert)</p>
-      <p class="legacy-note">HayTrade is an independent community tool and is not affiliated with Supercell.</p>
     </main>
 
 <div id="settingsOverlay" class="overlay" hidden>
@@ -253,15 +249,7 @@
             </div>
         </div>
 
-        <div id="changelogOverlay" class="overlay" hidden>
-            <div class="overlayBackground"></div>
-            <div class="overlayBox">
-                <button class="overlayHideButton">X</button>
-                <div class="overlayInner"></div>
-            </div>
-        </div>
-
-        <div id="failedCopyOverlay" class="overlay" hidden>
+        <div id="failedCopyOverlay class="overlay" hidden>
             <div class="overlayBackground"></div>
             <div class="overlayBox">
                 <button class="overlayHideButton">X</button>
