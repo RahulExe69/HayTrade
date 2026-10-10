@@ -667,3 +667,67 @@ input[type=range]{accent-color:var(--green)}
 #priceCalculationModeSelectionInfo{color:var(--muted);font-size:11px}
 @media(max-width:850px){.workspace{grid-template-columns:1fr}.welcome-art{width:32%;opacity:.8}.preview-stage{min-height:220px}.itemImage{width:70px;height:70px}}
 @media(max-width:540px){.site-header{height:66px;padding:0 16px}.brand-mark{width:38px;height:38px}.brand strong{font-size:18px}.brand small{font-size:8px;letter-spacing:1.2px}.header-actions{gap:6px}.header-actions button{font-size:11px;padding:9px 10px}.app-shell{width:calc(100% - 22px);margin:14px auto 28px}.welcome-panel{min-height:260px;padding:23px 20px;align-items:flex-start}.welcome-copy{max-width:100%}.welcome-copy h1{font-size:37px;letter-spacing:-1.8px}.welcome-copy p{max-width:80%;font-size:13px}.welcome-pills{max-width:78%;gap:5px;margin-top:16px}.welcome-pills span{font-size:9px;padding:6px 8px}.welcome-art{width:46%;opacity:.5}.barn{font-size:62px;right:9%;bottom:27px}.sun{width:75px;height:75px;right:7%}.workspace{gap:13px;margin-top:13px}.editor-panel,.preview-panel{padding:17px 14px;border-radius:18px}.section-heading h2{font-size:21px}.field-grid{grid-template-columns:minmax(0,1fr) 82px}.field-name{grid-column:1/-1}.field-grid .field:nth-child(3){grid-column:1/-1}.editor-actions button{flex:1}.live-indicator{font-size:8px;padding:6px 7px}.preview-stage{padding:14px 5px;min-height:180px}#screenshotRegion{padding:10px 8px;border-radius:12px}#itemTable{border-spacing:3px}.itemImage{width:54px;height:54px}.quantityLabel{font-size:22px}.priceLabel{font-size:15px}.export-actions{gap:7px}.export-actions button{font-size:12px;padding:11px 8px;min-width:0}.bottom-help{flex-wrap:wrap;padding:14px}.bottom-help>div{min-width:calc(100% - 60px)}.bottom-help>button{flex:1}.more-options{gap:9px}.toolbar-buttons button{font-size:10px;padding:7px 8px}}
+
+
+/* ===== Compact, preview-first HayTrade layout ===== */
+.site-header{height:62px;padding:0 clamp(14px,3vw,32px)}
+.brand{gap:9px}.brand-mark{width:38px;height:38px;border-radius:12px;font-size:21px}
+.brand strong{font-size:18px}.brand small{font-size:8px;letter-spacing:1.15px;margin-top:2px}
+.app-shell{width:min(1200px,calc(100% - 24px));margin:14px auto 24px}
+.welcome-panel{min-height:132px;padding:22px 28px;border-radius:20px}
+.welcome-copy h1{font-size:clamp(28px,3vw,38px);letter-spacing:-1.5px;margin:7px 0 4px}
+.welcome-copy p{font-size:12px}.welcome-pills{display:none}
+.workspace{gap:12px;margin-top:12px}
+.editor-panel,.preview-panel{padding:18px;border-radius:18px}
+.section-heading{margin-bottom:12px;align-items:center}
+.section-heading h2{font-size:20px;margin:0}.section-heading p{display:none}
+.heading-icon{width:34px;height:34px;font-size:18px}
+.field-grid{gap:8px}.field label,.more-options label{font-size:10px}
+input[type=text],textarea,select{padding:9px 10px;border-radius:10px}
+.editor-actions{gap:7px;margin-top:9px}
+.editor-actions button,.toolbar-buttons button{padding:8px 10px;font-size:11px}
+.toolbar-title{display:none}.quick-toolbar{margin-top:10px;padding-top:9px}
+.toolbar-buttons{gap:6px}.more-options{margin-top:10px;padding-top:9px}
+.preview-stage{min-height:120px;padding:12px}
+#screenshotRegion{padding:12px;border-radius:12px}
+.export-actions{gap:8px;margin-top:10px}.export-actions button{padding:10px 12px}
+.preview-hint{display:none}
+.bottom-help{margin-top:12px;padding:10px 12px;gap:8px;border-radius:12px}
+.bottom-help>button{padding:8px 12px;font-size:11px}
+.independent-note{margin-left:auto;color:var(--muted);font-size:10px}
+.legacy-note{display:none}
+.overlayBox{background-color:#fffef9;isolation:isolate;opacity:1}
+.overlayInner{background:#fffef9}
+@media(max-width:850px){
+  .site-header{height:56px;padding:0 12px}
+  .brand-mark{width:34px;height:34px;font-size:19px}
+  .brand strong{font-size:17px}.brand small{display:none}
+  .header-actions button{padding:8px 10px;font-size:11px}
+  .app-shell{width:calc(100% - 16px);margin:8px auto 16px}
+  .welcome-panel{display:none}
+  .workspace{display:flex;flex-direction:column;gap:8px;margin-top:0}
+  .preview-panel{order:-1;width:100%;padding:12px;border-radius:15px;display:flex;flex-direction:column;gap:0}
+  .editor-panel{order:1;width:100%;padding:12px;border-radius:15px}
+  .preview-heading{order:0;margin-bottom:8px}
+  .preview-heading .live-indicator{font-size:9px;padding:5px 7px}
+  .export-actions{order:1;margin:0 0 8px;gap:6px}
+  .export-actions button{min-width:0;flex:1;padding:10px 8px;font-size:12px}
+  .preview-stage{order:2;min-height:0;padding:8px 5px;border-radius:11px}
+  #screenshotRegion{max-width:100%;padding:8px}
+  .section-heading{margin-bottom:9px}
+  .editor-panel .section-heading{margin-bottom:10px}
+  .field-grid{grid-template-columns:minmax(0,1fr) 68px 90px;gap:6px}
+  .field-name{grid-column:auto}.field-grid .field:nth-child(3){grid-column:auto}
+  .field label{font-size:10px;line-height:1.25;min-height:13px}
+  input[type=text]{min-width:0;width:100%;padding:8px 7px;font-size:15px}
+  .editor-actions button{flex:1;padding:9px 8px;font-size:11px}
+  .quick-toolbar{margin-top:7px;padding-top:7px}
+  .toolbar-buttons{gap:5px}.toolbar-buttons button{font-size:10px;padding:7px 8px}
+  .more-options{margin-top:8px;padding-top:7px}
+  .bottom-help{margin-top:8px;padding:8px}.independent-note{font-size:9px}
+}
+@media(max-width:380px){
+  .field-grid{grid-template-columns:minmax(0,1fr) 60px 78px;gap:5px}
+  .brand strong{font-size:16px}.header-actions button{padding:7px 8px}
+  .export-actions button{font-size:11px}
+}
