@@ -30,93 +30,78 @@
         <script src="script.js?v=3.3"></script>
     </head>
     <body>
-        <h2>Options</h2>
 
-        <label for="itemsPerRowSlider">Items Per Row</label>
-        <input type="range" min="1" max="12" id="itemsPerRowSlider" style="vertical-align: sub;"> <!-- seems to align slightly better than "vertical-align: middle" -->
-        <label id="itemsPerRowLabel">8</label>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="HayTrade home">
+        <span class="brand-mark">🌾</span>
+        <span><strong>HayTrade</strong><small>HAY DAY TRADING STUDIO</small></span>
+      </a>
+      <div class="header-actions">
+        <button id="settingsOverlayShowButton" class="icon-button">⚙ <span>Settings</span></button>
+        <button id="changelogOverlayShowButton" class="quiet-button">What's new</button>
+      </div>
+    </header>
 
-        <button id="settingsOverlayShowButton" style="margin-left: 20px;">Settings</button>
-        <button id="changelogOverlayShowButton">Changelog</button>
-        <!-- TODO -- impl -->
-        <!-- <button id="tutorialOverlayShowButton">Tutorial</button> -->
-        <button id="contactOverlayShowButton">Contact</button>
-        <button id="tryNewSiteButton">Try <b>New</b> Site</button>
-        <button id="donateButton"><b>Donate</b></button>
-
-        <div style="height: 20px;"></div>
-        <hr>
-
-        <h2>
-            Add/Modify Item
-            <small><small>(Press enter inside any textbox to submit pending item changes)</small></small>
-        </h2>
-
-        <!-- Label MUST be outside of the div for the dimensions of the autocomplete/fuzzy match options to be proper -->
-        <label for="itemNameInput">Name</label>
-        <!-- this div needs to have position be relative in order for 100% width of the inner div to not cover the whole document ( https://stackoverflow.com/questions/6625116/css-position-absolute-and-full-width-problem ) -->
-        <div style="display: inline-block; position: relative;">
-            <!-- using em to be relative to the font size, since the font size is increased on iOS (to 16px) -->
-            <input type="text" id="itemNameInput" style="width: 8em;" autocomplete="off">
-            <div id="itemNameFuzzyMatchesHolder" class="fuzzyMatchesHolder"></div>
+    <main class="app-shell">
+      <section class="welcome-panel">
+        <div class="welcome-copy">
+          <span class="eyebrow">YOUR FARM. YOUR MARKET.</span>
+          <h1>Make a listing<br><em>worth trading for.</em></h1>
+          <p>Build a clean, eye-catching item card for your Hay Day trading community.</p>
+          <div class="welcome-pills"><span>✦ Live preview</span><span>↗ Share-ready</span><span>☁ Stays on your device</span></div>
         </div>
+        <div class="welcome-art" aria-hidden="true"><div class="sun"></div><div class="hill hill-back"></div><div class="hill hill-front"></div><div class="barn">🏡</div><div class="crop crop-one">🌾</div><div class="crop crop-two">🌻</div></div>
+      </section>
 
-        <label for="itemQuantityInput">Quantity</label>
-        <input type="text" id="itemQuantityInput" style="width: 3em;">
+      <div class="workspace">
+        <section class="editor-panel">
+          <div class="section-heading"><div><span class="step-label">STEP 01</span><h2>Build your listing</h2><p>Add items and set quantities.</p></div><span class="heading-icon">🧺</span></div>
 
-        <label for="itemPriceOrMultiplierInput">Price/Multiplier</label>
-        <input type="text" id="itemPriceOrMultiplierInput" style="width: 3em;">
+          <div class="field-grid">
+            <div class="field field-name"><label for="itemNameInput">Item name</label><div class="autocomplete-wrap"><input type="text" id="itemNameInput" autocomplete="off" placeholder="Search items…" /><div id="itemNameFuzzyMatchesHolder" class="fuzzyMatchesHolder"></div></div></div>
+            <div class="field"><label for="itemQuantityInput">Quantity</label><input type="text" id="itemQuantityInput" placeholder="40" inputmode="text" /></div>
+            <div class="field"><label for="itemPriceOrMultiplierInput">Price / multiplier</label><input type="text" id="itemPriceOrMultiplierInput" placeholder="Optional" inputmode="text" /></div>
+          </div>
+          <div class="editor-actions"><button id="itemSubmitButton" class="primary-button">＋ Add / update item</button><button id="itemDeleteButton" class="danger-button disableInPriceCalculationMode">Delete</button></div>
 
-        <button id="itemSubmitButton" style="margin-left: 10px;">Submit</button>
-        <button id="itemDeleteButton" class="disableInPriceCalculationMode">Delete</button>
+          <div class="quick-toolbar">
+            <div class="toolbar-title">Listing tools</div>
+            <div class="toolbar-buttons">
+              <button id="clearAllButton" class="quiet-button disableInPriceCalculationMode">Clear all</button>
+              <button id="priceCalculationToggleButton" class="quiet-button"><span id="priceCalculationModeStateSpan">Enable</span> price calculator</button>
+              <button id="selectAllButton" class="quiet-button disableOutsidePriceCalculationMode">Select all</button>
+              <button id="clearSelectionButton" class="quiet-button disableOutsidePriceCalculationMode">Clear selection</button>
+              <button id="subtractSelectedQuantitiesButton" class="quiet-button disableOutsidePriceCalculationMode">Subtract selected</button>
+              <button id="deleteSelectedButton" class="danger-button disableOutsidePriceCalculationMode">Delete selected</button>
+              <button id="resetCustomValuesButton" class="quiet-button disableOutsidePriceCalculationMode">Reset custom values</button>
+              <button id="equationVisibilityToggleButton" class="quiet-button disableOutsidePriceCalculationMode"><span id="equationVisibilityStateSpan">Show</span> equation</button>
+              <button id="unselectedItemsVisibilityToggleButton" class="quiet-button disableOutsidePriceCalculationMode"><span id="unselectedItemsVisibilityStateSpan">Hide</span> unselected</button>
+            </div>
+          </div>
+          <div id="totalSelectedPriceArea" class="total-panel" hidden><h3>Total selected price</h3><p id="totalSelectedPriceHolder"></p><p id="totalSelectedPriceEquationHolder" hidden></p><p id="totalSelectedPriceMessageHolder" hidden></p></div>
+          <div class="more-options"><label for="itemsPerRowSlider">Items per row <strong id="itemsPerRowLabel">8</strong></label><input type="range" min="1" max="12" id="itemsPerRowSlider" value="8" /></div>
+        </section>
 
-        <br>
-        <div style="height: 2px;"></div>
+        <section class="preview-panel">
+          <div class="section-heading preview-heading"><div><span class="step-label">STEP 02</span><h2>Your trade card</h2><p>Updates as you edit your listing.</p></div><span class="live-indicator"><i></i> LIVE PREVIEW</span></div>
+          <div class="preview-stage">
+            <div id="screenshotRegion">
+              <table id="itemTable"></table>
+              <p id="bottomText"></p>
+              <p id="screenshotPriceHolder"></p>
+              <p class="watermark">HayTrade</p>
+            </div>
+          </div>
+          <div class="export-actions"><button id="copyImageToClipboardButton" class="primary-button">▣ Copy image</button><button id="copyAsTextListButton" class="secondary-button">☷ Copy text list</button><div id="copyImageLoadingWheel" class="loading" hidden></div></div>
+          <p class="preview-hint">Tip: tap an item in the preview to edit its details.</p>
+        </section>
+      </div>
+      <section class="bottom-help"><span class="help-icon">✦</span><div><strong>Ready to trade?</strong><p>Your listing card is generated in your browser. No account needed.</p></div><button id="contactOverlayShowButton" class="quiet-button">Help & contact ↗</button><button id="donateButton" class="quiet-button">♡ Support</button></section>
+      <p id="priceCalculationModeSelectionInfo" hidden>Click = individual toggle, Shift+Click = range additive, Alt+Click = range subtractive, Ctrl+Click = range toggle (invert)</p>
+      <p class="legacy-note">HayTrade is an independent community tool and is not affiliated with Supercell.</p>
+    </main>
 
-        <button id="clearAllButton" class="disableInPriceCalculationMode">Clear All</button>
-        <button id="copyImageToClipboardButton">Copy Image to Clipboard</button>
-        <button id="copyAsTextListButton">Copy as Text List</button>
-        <div id="copyImageLoadingWheel" class="loading" hidden></div>
-        <br>
-        <div style="height: 2px;"></div>
-        <button id="priceCalculationToggleButton"><span id="priceCalculationModeStateSpan">Enable</span> Price Calculation Mode</button>
-        <button id="selectAllButton" class="disableOutsidePriceCalculationMode">Select All</button>
-        <button id="clearSelectionButton" class="disableOutsidePriceCalculationMode">Clear Selection</button>
-        <button id="subtractSelectedQuantitiesButton" class="disableOutsidePriceCalculationMode">Subtract Selected Quantities</button>
-        <button id="deleteSelectedButton" class="disableOutsidePriceCalculationMode">Delete Selected</button>
-        <br>
-        <div style="height: 2px;"></div>
-        <button id="resetCustomValuesButton" class="disableOutsidePriceCalculationMode">Reset Custom Values</button>
-        <button id="equationVisibilityToggleButton" class="disableOutsidePriceCalculationMode"><span id="equationVisibilityStateSpan">Show</span> Equation</button>
-        <button id="unselectedItemsVisibilityToggleButton" class="disableOutsidePriceCalculationMode"><span id="unselectedItemsVisibilityStateSpan">Hide</span> Unselected</button>
-
-        <div style="height: 15px;"></div>
-        <hr>
-        <div id="totalSelectedPriceArea" hidden>
-            <h2>Total Selected Price</h2>
-            <p id="totalSelectedPriceHolder"></p>
-            <p id="totalSelectedPriceEquationHolder" hidden></p>
-            <p id="totalSelectedPriceMessageHolder" hidden></p>
-            <hr>
-        </div>
-        <small>You can click on any item's image, quantity, or price to autofill all their information and focus the corresponding text box!  (This includes the bottom text.)</small>
-        <br>
-        <small id="priceCalculationModeSelectionInfo" hidden>Click = individual toggle, Shift+Click = range additive, Alt+Click = range subtractive, Ctrl+Click = range toggle (invert)</small>
-        <div style="height: 20px;"></div>
-
-        <div id="screenshotRegion">
-            <table id="itemTable"></table>
-
-            <p id="bottomText"></p>
-            <p id="screenshotPriceHolder"></p>
-            <p class="watermark">jjcuber.github.io/hdig</p>
-        </div>
-
-        <hr>
-
-        <p>⚠️ This site is <b>no longer maintained</b>!  If you run into issues, please try the <b><a href="https://hd.jjtechdev.com/" target="_blank">new site</a></b> instead! ⚠️</p>
-
-        <div id="settingsOverlay" class="overlay" hidden>
+<div id="settingsOverlay" class="overlay" hidden>
             <div class="overlayBackground"></div>
             <div class="overlayBox">
                 <button class="overlayHideButton">X</button>
